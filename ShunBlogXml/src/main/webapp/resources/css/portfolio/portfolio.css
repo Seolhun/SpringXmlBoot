@@ -1,0 +1,25 @@
+.pf-main{
+	text-align: center;
+}
+
+.pf-name{
+	font-size: 30px;
+	font-family : Verdana;
+	padding-bottom: 15px;
+}
+
+.pfList-li1{
+    height : 40px;
+    text-align: center;
+
+}
+
+.pfList-li2{
+    height : 40px;
+
+}
+
+.pf-boardDiv{
+    position: relative;
+
+}

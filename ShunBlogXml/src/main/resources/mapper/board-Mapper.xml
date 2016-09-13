@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- [CDATA[ ]]를 넣는 이유 XHTML 파서가 스크립트 부분에 들어간 html부분을 파싱하지 않도록 막아주는 것이다. 
+	물론 대개의 경우 없어도 되지만 이렇게 함으로써 완전히 차단하는 것이다. -->
+<mapper namespace="board">
+	<select id="boardTotalPage" resultType="int">
+        <![CDATA[
+			SELECT CEIL(count(boardno)/10) 
+			FROM boardVO	
+        ]]>
+	</select>
+
+	<select id="boardAllData" parameterType="int" resultType="hashMap">
+	    <![CDATA[
+			SELECT boardno,account,subject,content,regdate,hit,blike,depth
+			FROM boardVO 
+			ORDER BY boardno DESC
+			LIMIT #{start},10
+		]]>
+	</select>
+
+	<select id="insertFileCheckBoardNo" parameterType="hashMap"
+		resultType="int">
+	    <![CDATA[
+			SELECT Max(boardno)
+			FROM boardVO;
+		]]>
+	</select>
+
+	<insert id="boardInsert" parameterType="hashMap">
+		<![CDATA[
+		INSERT INTO boardvo VALUES(DEFAULT,#{boardAccount},#{boardSubject},#{smartEditor},now(),0,0,0)
+		]]>
+	</insert>
+
+	<insert id="boardInsertFile" parameterType="hashmap">
+    <![CDATA[
+        INSERT INTO boardFileVO
+        VALUES(
+         	DEFAULT,
+            #{fileBoardNo},
+            #{originFileName},
+            #{storeFileName},
+            #{fileSize},
+            DEFAULT,
+            #{fileRegAccount}
+        )
+    ]]>
+	</insert>
+
+	<select id="boardDetail" parameterType="int"
+		resultType="com.shun.blog.board.BoardVO">
+		SELECT
+		boardno,account,subject,content,regdate,hit,blike,depth
+		FROM boardVO
+		WHERE boardno=#{boardNo}
+	</select>
+
+	<update id="boardHitIncrement" parameterType="int">
+		UPDATE boardVO
+		SET
+		hit=hit+1
+		WHERE boardno=#{boardNo}
+	</update>
+
+	<!-- 좋아요 구현 중 -->
+	<update id="boardLikeChange">
+		UPDATE likeVO
+		SET hit=hit+1
+		WHERE Lboardno=#{boardNo}
+		AND account=#{logAccount}
+	</update>
+
+	<insert id="boardReplyInsert" parameterType="hashMap">
+		INSERT INTO
+		boardReplyVO
+		VALUES(DEFAULT,#{boardNo},#{logAccount},#{replyContent},DEFAULT,DEFAULT)
+	</insert>
+
+	<select id="boardReplyList" parameterType="int" resultType="com.shun.blog.board.BoardReplyVO">
+		SELECT
+		boardReplyNo,reBoardNo,reAccount,replyContent,replyRegDate,boardLikeNum
+		FROM boardReplyVO
+		WHERE reBoardNo=#{boardNo}
+	</select>
+
+	<update id="boardDepthIncrement" parameterType="int">
+		UPDATE boardVO
+		SET boardVO.depth=boardVO.depth+1
+		WHERE boardVO.boardno=#{boardNo}
+	</update>
+
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM boardVO WHERE
+		boardno=#{boardNo}
+	</delete>
+
+	<!-- 게시글 삭제시 댓글 있는지 확인하기 -->
+	<select id="checkReplyNum" parameterType="int" resultType="int">
+		SELECT depth FROM boardVO where boardno=#{boardNo}
+	</select>
+
+	<!-- 댓글 삭제시 댓글 수 감소 -->
+	<update id="boardReplyDelete" parameterType="hashMap">
+		UPDATE boardVO SET
+		boardVO.depth=boardVO.depth-1 WHERE boardVO.boardno=#{boardNo}
+	</update>
+
+	<!-- 게시글 수정하기 불러오기 -->
+	<select id="boardModify">
+		SELECT
+		boardno,account,subject,content,regdate,hit,blike,depth
+		FROM boardVO
+		WHERE boardno=#{boardNo}
+	</select>
+
+	<!-- 게시글 수정하기 저장하는 것 -->
+	<update id="boardModifyInsert">
+		UPDATE boardVO SET
+		subject=#{boardModifySubject},content=#{smartEditor},regdate=now()
+		WHERE boardno=#{boardModifyNo}
+	</update>
+
+	<select id="boardSearch" parameterType="hashMap" resultType="hashMap">
+		SELECT boardno,account,subject,content,regdate,hit,blike,depth
+		FROM boardVO
+		<if test="searchType.equals('subject')">
+			WHERE subject
+			LIKE CONCAT('%',#{searchContent},'%')
+			ORDER BY boardno DESC
+			LIMIT #{searchStart},10
+		</if>
+		<if test="searchType.equals('content')">
+			WHERE boardVO.content 
+			LIKE CONCAT('%',#{searchContent},'%')
+			OR boardVO.subject LIKE CONCAT('%',#{searchContent},'%')
+			ORDER BY boardno DESC
+			LIMIT #{searchStart},10
+		</if>
+		<if test="searchType.equals('account')">
+			WHERE account
+			LIKE CONCAT('%',#{searchContent},'%')
+			ORDER BY boardno DESC
+			LIMIT #{searchStart},10
+		</if>
+	</select>
+
+	<select id="boardSearchTotalPage" parameterType="hashMap"
+		resultType="int">
+		SELECT CEIL(count(boardno)/10)
+		FROM boardVO
+		<if test="searchType.equals('subject')">
+			WHERE subject
+			LIKE CONCAT('%',#{searchContent},'%')
+		</if>
+		<if test="searchType.equals('content')">
+			WHERE boardVO.content LIKE
+			CONCAT('%',#{searchContent},'%')
+			OR boardVO.subject LIKE
+			CONCAT('%',#{searchContent},'%')
+		</if>
+		<if test="searchType.equals('account')">
+			WHERE account
+			LIKE CONCAT('%',#{searchContent},'%')
+		</if>
+	</select>
+</mapper>

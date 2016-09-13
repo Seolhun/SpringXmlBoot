@@ -1,0 +1,73 @@
+.modal-body, .modal-header, .modal-footer {
+	padding: 30px 30px;
+	width: 100%;
+	height: auto;
+}
+
+.modal-header h4 {
+	text-align: center;
+	font-size: 25px;
+}
+
+.form-group {
+	width: 100%;
+}
+
+.footerDiv{
+	min-width : 190px;
+	width: auto;
+}
+
+div.right {
+	text-align: center;
+}
+
+div.right a {
+	display: inline-block;
+	font-size: 1.5em;
+	text-decoration: none;
+	color: white;
+	width: 5.8em;
+	padding: 0.55em 0.3em;
+	clear: both;
+	text-align: center;
+	-moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	border-radius: 0.3em;
+}
+
+div.right a.facebook {
+	background: #3a589a;
+	-moz-transition: all 0.15s ease-in-out;
+	-o-transition: all 0.15s ease-in-out;
+	-webkit-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+}
+
+div.right a.facebook:hover {
+	background: rgba(58, 88, 154, 0.8);
+}
+
+div.right a.twitter {
+	background: #4099ff;
+	-moz-transition: all 0.15s ease-in-out;
+	-o-transition: all 0.15s ease-in-out;
+	-webkit-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+}
+
+div.right a.twitter:hover {
+	background: rgba(64, 153, 255, 0.8);
+}
+
+div.right a.google-plus {
+	background: #e9544f;
+	-moz-transition: all 0.15s ease-in-out;
+	-o-transition: all 0.15s ease-in-out;
+	-webkit-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+}
+
+div.right a.google-plus:hover {
+	background: rgba(233, 84, 79, 0.8);
+}

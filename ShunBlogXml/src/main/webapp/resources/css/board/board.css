@@ -1,0 +1,181 @@
+@CHARSET "UTF-8";
+
+.boardUI {
+	text-align: center;
+}
+
+.boardName {
+	font-size: 30px;
+	font-family: Verdana;
+}
+
+#writeBtn {
+	float: right;
+}
+
+.boardNum {
+	cursor: pointer;
+	padding: 0px 10px;
+}
+
+.boardList, .boardTh {
+	cursor: pointer;
+	text-align: center;
+}
+
+.boardList2 {
+	cursor: pointer;
+}
+
+.boardtable {
+	transition-property: background;
+	transition-duration: 0.5s;
+	transition-timing-function: linear;
+}
+
+.boardtable:hover {
+	background: #ecf6ff;
+}
+
+#boardSubject {
+	float: left;
+}
+
+.boardFunctionBtn {
+	height: 30px;
+	font-size: 14px;
+	margin: 0px 5px;
+	float: left;
+}
+
+#boardFunctionDiv {
+	width: 33%;
+	float: left;
+	margin-left: 10px;
+}
+
+.boardDetailDiv {
+	width: 100%;
+}
+
+.boardInsertDiv {
+	position: static;
+}
+
+.fileInput {
+	float: left;
+	height: auto;
+	width: 80%;
+	position: inherit;
+}
+
+.fileInsertDiv {
+	margin-top: 10px;
+	position: inherit;
+}
+
+#contentDiv {
+	margin-top: 10px;
+	position: inherit;
+}
+
+#sendDiv {
+	margin-top: 20px;
+	position: relative;
+	text-align: center;
+	padding-bottom: 50px;
+	width: 95%;
+}
+
+#replyDiv {
+	text-align: center;
+	margin-top: 25px;
+	position: relative;
+}
+
+#reTextarea {
+	float: left;
+	width: 100%;
+}
+
+#detailContent {
+	width: 10%;
+	float: left;
+	text-align: center;
+}
+
+#article {
+	position: relative;
+}
+
+#boardContent {
+	border: 0.5px solid rgba(128, 128, 128, 0.3);
+	width: 79%;
+	min-height: 200px;
+	float: left;
+	position: inherit;
+}
+
+#reTextarea {
+	border: 0.1px solid rgba(128, 128, 128, 0);
+	border-bottom: 0.1px solid rgba(128, 128, 128, 0.1);
+}
+
+#replyInsertDiv {
+	position: inherit;
+	float: left;
+	border: 0.5px solid rgba(128, 128, 128, 0.3);
+	width: 79%;
+}
+
+#countReplyInput {
+	width: 78%;
+	text-align: center;
+	font-weight: normal;
+	y-overflow: auto;
+}
+
+#replyBtn {
+	float: right;
+}
+
+#divideReply {
+	width: 99%;
+	float: left;
+	border-top: 0.5px solid rgba(128, 128, 128, 0.3);
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+#replyBorderDiv {
+	margin-top: 20px;
+}
+
+#replyListDiv {
+	width: 79%;
+	position: inherit;
+}
+
+#replyContentDiv {
+	width: 99%;
+	text-align: left;
+	min-height: 100px;
+	float: left;
+	border: 0.5px solid rgba(128, 128, 128, 0.3);
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+#replyDeleteBtn {
+	float: left;
+	height: 30px;
+}
+
+.employeeDetail2 {
+	color: black;
+}
+
+#functionBoard {
+	text-align: center;
+	margin-bottom: 10px;
+}
