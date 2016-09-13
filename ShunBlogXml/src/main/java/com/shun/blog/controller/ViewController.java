@@ -7,7 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
+@Controller("viewController")
 public class ViewController {
 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
@@ -15,7 +15,7 @@ public class ViewController {
 		return "main";
 	}
 
-	@RequestMapping(value = { "/main" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "main.do" }, method = RequestMethod.GET)
 	public String home2(ModelMap model) {
 		return "main";
 	}

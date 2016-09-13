@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.shun.blog</groupId>
-	<artifactId>ShunBlog</artifactId>
+	<artifactId>ShunBlogXml</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>ShunBlog</name>
+	<name>ShunBlogXml</name>
 	<description>Spring Boot Project</description>
 
 	<parent>
@@ -169,8 +169,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>ShunBlog</finalName>
+		<finalName>ShunBlogXml</finalName>
 	</build>
-
-
 </project>
