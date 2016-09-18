@@ -2,19 +2,19 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	
+
 	<!-- 스프링 Security 세션 리스너 등록 -->
 	<listener>
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
-
+	
 	<!-- 디스패처 서블렛 -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/applicationServlet.xml</param-value>
+			<param-value>/WEB-INF/config/applicationContext.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -33,24 +33,9 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
+
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<!-- 리소스 패키지 읽어오기 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:config/spring/context-*.xml</param-value>
-	</context-param>
-	
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener> 
-<!-- 	
-	ContextLoaderListener 와 DispatcherServlet 은 각각 webapplicationcontext 를 생성하는데
-	ContextLoaderListener 가 생성한 컨텍스트가 root 컨텍스트가 되고 
-	DispatcherServlet  생성한 인스턴스는 root 컨텍스트를 부모로 하는 자식 컨텍스트가 된다.
--->
-	
 </web-app>

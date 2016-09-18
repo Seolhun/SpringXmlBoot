@@ -20,19 +20,19 @@ public class ViewController {
 		return "main";
 	}
 	
-	@RequestMapping(value = { "/boardInsert" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/board" }, method = RequestMethod.GET)
 	public String boardInsert(ModelMap model) {
-		return "boardInsert";
+		return "board";
 	}
 
 	@RequestMapping(value = { "/portfolio" }, method = RequestMethod.GET)
 	public String portfolio(ModelMap model) {
-		return "portfolio";
+		return "portfolio/portfolio";
 	}
 
-	@RequestMapping(value = { "/contact" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/contact/contact" }, method = RequestMethod.GET)
 	public String contact(ModelMap model) {
-		return "contact";
+		return "contact/contact";
 	}
 
 	private String getPrincipal() {

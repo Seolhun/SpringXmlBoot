@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.annotation.Resource;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -41,7 +40,7 @@ public class BoardController {
 	@RequestMapping("/board")
 	//public ModelAndView board_list(String curPage, String block, String searchType, String searchContent, Model model) {
 	public ModelAndView boardList(Map<String, Object> Map, String curPage, String block, Model model) throws Exception {
-		ModelAndView mv=new ModelAndView("board");
+		ModelAndView mv=new ModelAndView("board/board");
 		if (curPage == null) {
 			curPage = "1";
 		}
@@ -109,7 +108,7 @@ public class BoardController {
 		map.put("boardSubject", boardSubject);
 		map.put("smartEditor", smartEditor);
 		boardService.boardInsert(map, req);
-		return "redirect:/board";
+		return "board/board";
 	}
 
 	//게시글 내용보기 

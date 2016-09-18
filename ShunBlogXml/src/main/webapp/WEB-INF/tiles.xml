@@ -10,11 +10,11 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
 	</definition>
 	
-	<definition name="*/*/*" extends="base-definition">
+<!-- 	<definition name="*/*/*" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
-	</definition> 
+	</definition>  -->
 	
 	<!-- Home Page -->
 	<definition name="main" extends="base-definition">
