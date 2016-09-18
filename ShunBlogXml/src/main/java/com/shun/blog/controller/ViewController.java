@@ -15,7 +15,7 @@ public class ViewController {
 		return "main";
 	}
 
-	@RequestMapping(value = { "main.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/main" }, method = RequestMethod.GET)
 	public String home2(ModelMap model) {
 		return "main";
 	}
