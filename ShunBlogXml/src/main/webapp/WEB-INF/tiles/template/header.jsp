@@ -19,10 +19,10 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="main/main">iMediSyn</a></li>
-					<li><a href="portfolio//portfolio">Solution</a></li>
-					<li><a href="board/board">Notice</a></li>
-					<li><a href="contact/contact">Contact</a></li>
+					<li><a href="main">iMediSyn</a></li>
+					<li><a href="portfolio">Solution</a></li>
+					<li><a href="board">Notice</a></li>
+					<li><a href="contact">Contact</a></li>
 				<c:if test="${param.logout == null}">
 					<li><a id="loginBtn">Login</a></li>
 					<li><a id="signBtn">SignUp</a></li>

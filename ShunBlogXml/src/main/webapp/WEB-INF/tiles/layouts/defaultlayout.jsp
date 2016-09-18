@@ -2,11 +2,13 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:url value="/resources/css" var="css" />
+<spring:url value="/resources/images" var="images" />
+<spring:url value="/resources/js" var="js" />
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="Chrome">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
 <title>Shun Blog</title>
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -15,8 +17,8 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href="/resources/css/font/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!-- Main Design CSS -->
-<link href="<c:url value='/resources/css/main/clean-blog.min.css'/>" rel="stylesheet"></link>
-<link href="<c:url value='/resources/css/login/login.css'/>" rel="stylesheet"></link>
+<link href="${css}/main/clean-blog.min.css" rel="stylesheet"></link>
+<link href="${css}/login/login.css" rel="stylesheet"></link>
 </head>
 
 <body>
@@ -40,12 +42,14 @@
 	
 	<!-- Contact Form JavaScript -->
 	<script src="<c:url value='/resources/js/main/jqBootstrapValidation.js'/>"></script>
-	<script src="<c:url value='/resources/js/main/contact_me.js'/>"></script>
-	<script src="<c:url value='/resources/js/board/board.js'/>"></script>
-	<script src="<c:url value='/resources/js/login/login.js'/>"></script>
+	<script src="${js}/main/jqBootstrapValidation.js'"></script>
+	<script src="${js}/main/contact_me.js"></script>
+	<script src="${js}/board/board.js"></script>
+	<script src="${js}/login/login.js"></script>
 	
 	<!-- Theme JavaScript -->
-	<script src="<c:url value='/resources/js/main/clean-blog.min.js'/>"></script>
+	<script src="${js}/main/clean-blog.min.js"></script>
+	
 	<!-- 네이버 글쓰기 자바스크립 -->
 	<script src="<c:url value='/WEB-INF/views/SE2/js/HuskyEZCreator.js'/>"></script>
 	<script type="text/javascript" src="/WEB-INF/views/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>

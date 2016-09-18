@@ -23,7 +23,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.shun.blog.board.BoardReplyVO;
 import com.shun.blog.board.BoardService;
@@ -39,8 +38,7 @@ public class BoardController {
 	
 	@RequestMapping("/board")
 	//public ModelAndView board_list(String curPage, String block, String searchType, String searchContent, Model model) {
-	public ModelAndView boardList(Map<String, Object> Map, String curPage, String block, Model model) throws Exception {
-		ModelAndView mv=new ModelAndView("board/board");
+	public String boardList(Map<String, Object> Map, String curPage, String block, Model model) throws Exception {
 		if (curPage == null) {
 			curPage = "1";
 		}
@@ -63,12 +61,11 @@ public class BoardController {
 		model.addAttribute("currentBlock", currentBlock);
 		model.addAttribute("moveBlock", moveBlock);
 		model.addAttribute("blockNum", blockNum);
-		return mv; //콜백
+		return "board"; //콜백
 	}
 	
 	@RequestMapping("/boardSearch")
-	public ModelAndView boardSearch(@RequestParam String searchCurPage,@RequestParam String searchBlock,@RequestParam String searchType,@RequestParam String searchContent ,Model model){
-		ModelAndView mv=new ModelAndView("boardSearch");
+	public String boardSearch(@RequestParam String searchCurPage,@RequestParam String searchBlock,@RequestParam String searchType,@RequestParam String searchContent ,Model model){
 		if (searchCurPage == null) {
 			searchCurPage = "1";
 		}
@@ -96,7 +93,7 @@ public class BoardController {
 		model.addAttribute("searchBlockNum", searchBlockNum);
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchContent", searchContent);
-		return mv;
+		return "boardSearch";
 	}
 
 	// 게시판 글쓰기
@@ -113,8 +110,7 @@ public class BoardController {
 
 	//게시글 내용보기 
 	@RequestMapping("/boardDetail")
-	public ModelAndView boardDetail(int boardNo, HttpSession session, Model model) {
-		ModelAndView mv=new ModelAndView("boardModify");
+	public String boardDetail(int boardNo, HttpSession session, Model model) {
 		BoardVO bVo = boardService.boardDetail(boardNo);
 		List<BoardReplyVO> replyList =boardService.boardReplyList(boardNo);
 		String logAccount = (String)session.getAttribute("logAccount");
@@ -129,7 +125,7 @@ public class BoardController {
 		}
 		model.addAttribute("bVo", bVo);
 		model.addAttribute("replyList", replyList);
-		return mv;
+		return "boardModify";
 	}
 	
 	//게시글 댓글 달기 
@@ -192,11 +188,10 @@ public class BoardController {
 	
 	// 게시판 수정하기
 	@RequestMapping("/boardModify")
-	public ModelAndView boardModify(int boardNo, Model model){
-		ModelAndView mv=new ModelAndView("boardModify");
+	public String boardModify(int boardNo, Model model){
 		BoardVO bVO=boardService.boardModify(boardNo);
 		model.addAttribute("bVO", bVO);
-		return mv;
+		return "boardModify";
 	}
 	
 	// 게시판 수정하여 입력하기 
