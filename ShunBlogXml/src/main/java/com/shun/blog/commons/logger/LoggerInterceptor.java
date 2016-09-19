@@ -1,4 +1,4 @@
-package com.shun.blog.commons;
+package com.shun.blog.commons.logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

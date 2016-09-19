@@ -17,23 +17,20 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.shun.blog.board.BoardReplyVO;
-import com.shun.blog.board.BoardService;
-import com.shun.blog.board.BoardVO;
-
+import com.shun.blog.model.board.BoardReplyVO;
+import com.shun.blog.model.board.BoardService;
+import com.shun.blog.model.board.BoardVO;
 
 @Controller("boardController")
 public class BoardController {
-	Logger log=Logger.getLogger(this.getClass());
-	
-    @Autowired
+
+	@Autowired
     private BoardService boardService;
 	
 	@RequestMapping("/board")
@@ -61,7 +58,7 @@ public class BoardController {
 		model.addAttribute("currentBlock", currentBlock);
 		model.addAttribute("moveBlock", moveBlock);
 		model.addAttribute("blockNum", blockNum);
-		return "board"; //콜백
+		return "board/board"; //콜백
 	}
 	
 	@RequestMapping("/boardSearch")
@@ -93,7 +90,7 @@ public class BoardController {
 		model.addAttribute("searchBlockNum", searchBlockNum);
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchContent", searchContent);
-		return "boardSearch";
+		return "board/search";
 	}
 
 	// 게시판 글쓰기
@@ -125,7 +122,7 @@ public class BoardController {
 		}
 		model.addAttribute("bVo", bVo);
 		model.addAttribute("replyList", replyList);
-		return "boardModify";
+		return "board/modify";
 	}
 	
 	//게시글 댓글 달기 
@@ -191,7 +188,7 @@ public class BoardController {
 	public String boardModify(int boardNo, Model model){
 		BoardVO bVO=boardService.boardModify(boardNo);
 		model.addAttribute("bVO", bVO);
-		return "boardModify";
+		return "board/modify";
 	}
 	
 	// 게시판 수정하여 입력하기 

@@ -4,8 +4,6 @@
 <html>
 <head>
 <title>Board List</title>
-<!-- Board CSS -->
-<link href="<c:url value='/resources/css/board/board.css'/>" rel="stylesheet"></link>
 </head>
 	<!-- Page Header -->
 	<!-- Set your background image for this header on the line below. -->

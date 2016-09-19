@@ -1,7 +1,9 @@
-package com.shun.blog.board;
+package com.shun.blog.model.board;
 
 import org.springframework.stereotype.Repository;
-import com.shun.blog.commons.AbstractDAO;
+
+import com.shun.blog.commons.dao.AbstractDAO;
+
 import java.util.*;
 
 @Repository

@@ -1,4 +1,4 @@
-package com.shun.blog.commons;
+package com.shun.blog.commons.file;
  
 import java.util.UUID;
  

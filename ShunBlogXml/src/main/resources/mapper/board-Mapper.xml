@@ -5,10 +5,8 @@
 	물론 대개의 경우 없어도 되지만 이렇게 함으로써 완전히 차단하는 것이다. -->
 <mapper namespace="board">
 	<select id="boardTotalPage" resultType="int">
-        <![CDATA[
 			SELECT CEIL(count(boardno)/10) 
 			FROM boardVO	
-        ]]>
 	</select>
 
 	<select id="boardAllData" parameterType="int" resultType="hashMap">
@@ -50,7 +48,7 @@
 	</insert>
 
 	<select id="boardDetail" parameterType="int"
-		resultType="com.shun.blog.board.BoardVO">
+		resultType="com.shun.blog.model.board.BoardVO">
 		SELECT
 		boardno,account,subject,content,regdate,hit,blike,depth
 		FROM boardVO
@@ -78,7 +76,7 @@
 		VALUES(DEFAULT,#{boardNo},#{logAccount},#{replyContent},DEFAULT,DEFAULT)
 	</insert>
 
-	<select id="boardReplyList" parameterType="int" resultType="com.shun.blog.board.BoardReplyVO">
+	<select id="boardReplyList" parameterType="int" resultType="com.shun.blog.model.board.BoardReplyVO">
 		SELECT
 		boardReplyNo,reBoardNo,reAccount,replyContent,replyRegDate,boardLikeNum
 		FROM boardReplyVO

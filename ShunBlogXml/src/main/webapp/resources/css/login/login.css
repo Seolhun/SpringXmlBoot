@@ -13,6 +13,16 @@
 	width: 100%;
 }
 
+#signEmail, #checkEmailNum{
+	width: 80%;
+	float: left;
+}
+
+#emailCheck, #emailValidCheck{
+	position: inherit;
+	margin-left: 5%;
+}
+
 .footerDiv{
 	min-width : 190px;
 	width: auto;
@@ -49,7 +59,7 @@ div.right a.facebook:hover {
 }
 
 div.right a.twitter {
-	background: #4099ff;
+	background: #28df14;
 	-moz-transition: all 0.15s ease-in-out;
 	-o-transition: all 0.15s ease-in-out;
 	-webkit-transition: all 0.15s ease-in-out;
@@ -57,7 +67,7 @@ div.right a.twitter {
 }
 
 div.right a.twitter:hover {
-	background: rgba(64, 153, 255, 0.8);
+	background: rgba(40, 223, 20, 0.8);
 }
 
 div.right a.google-plus {

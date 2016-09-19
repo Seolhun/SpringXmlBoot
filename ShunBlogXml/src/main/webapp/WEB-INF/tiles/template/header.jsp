@@ -24,8 +24,8 @@
 					<li><a href="board">Notice</a></li>
 					<li><a href="contact">Contact</a></li>
 				<c:if test="${param.logout == null}">
-					<li><a id="loginBtn">Login</a></li>
-					<li><a id="signBtn">SignUp</a></li>
+					<li><a href="login" id="loginBtn">Login</a></li>
+					<li><a href="sign" id="signBtn">SignUp</a></li>
 				</c:if>
 				<c:if test="${param.logout != null}">
 					<li><a href="detailUser">${pageContext.request.userPrincipal.name}</a></li>
@@ -38,10 +38,4 @@
 		<!-- /.container -->
 	</nav>
 </body>
-	<div class="includeDiv col-lg-12" id="includeDiv col-lg-12">
-		<jsp:include page="/WEB-INF/views/user/login.jsp" flush="false"></jsp:include>
-	</div>
-	<div class="includeDiv col-lg-12" id="includeDiv col-lg-12">
-		<jsp:include page="/WEB-INF/views/user/sign.jsp" flush="false"></jsp:include>
-	</div>
 </html>

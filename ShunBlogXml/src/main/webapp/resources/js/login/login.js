@@ -1,11 +1,28 @@
 //로그인 모달
 $(function() {
-	$("#loginBtn").click(function() {
-		var logPwd = $('#logPwd').val("");
-		var logAccount = $('#logAccount').val("");
-		$("#loginModal").modal();
-	});
-
+	$('#emailCheck').click(function() {
+		var signEmail = $('#signEmail').val();
+		var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+		if (signEmail.match(regExp)){
+			$.ajax({
+				type : 'POST',
+				url : 'checkEmail',
+				data : {
+					'signEmail' : signEmail
+				},
+				success : function(data) {
+					if (data == "emailOK") {
+						$('#signYes').attr("disabled", false);
+					} else {
+						$('#signYes').attr("disabled", true);
+					}
+				}
+			}); // end ajax
+		} else {
+			alert("올바른 이메일이 아닙니다.")
+		}
+});
+	
 	//로그인 
 	$("#logYes").click(function() {
 		var logPwd = $('#logPwd').val();
@@ -42,47 +59,39 @@ $(function() {
 	});
 
 	// 아이디 중복체크 
-	$(document).ready(function() {
-		$('#signAccount').keyup(function() {
-			if ($('#signAccount').val().length > 1) {
-				var signAccount = $('#signAccount').val();
-				// ajax 실행
-				$.ajax({
-					type : 'POST',
-					url : 'accountCheck.do',
-					data : {
-						'signAccount' : signAccount
-					},
-					success : function(data) {
-						if (data == "ok") {
-							$('#result_id_msg').html('사용 가능한 아이디 입니다.');
-							$('#signYes').attr("disabled", false);
-						} else {
-							$('#result_id_msg').html('사용 불가능한 아이디 입니다.');
-							$('#signYes').attr("disabled", true);
-						}
-					}
-				}); // end ajax
-			}
-		}); // end keyup
-	});
-
-	//회원가입 모달버튼모달버 
-	$("#signBtn").click(function() {
-		var signAccount = $('#signAccount').val("");
-		var signPwd = $('#signPwd').val("");
-		var signPwd2 = $('#signPwd2').val("");
-		$("#SignUpModal").modal();
-	});
+//	$(document).ready(function() {
+//		$('#signAccount').keyup(function() {
+//			if ($('#signAccount').val().length > 1) {
+//				var signAccount = $('#signAccount').val();
+//				// ajax 실행
+//				$.ajax({
+//					type : 'POST',
+//					url : 'accountCheck.do',
+//					data : {
+//						'signAccount' : signAccount
+//					},
+//					success : function(data) {
+//						if (data == "ok") {
+//							$('#result_id_msg').html('사용 가능한 아이디 입니다.');
+//							$('#signYes').attr("disabled", false);
+//						} else {
+//							$('#result_id_msg').html('사용 불가능한 아이디 입니다.');
+//							$('#signYes').attr("disabled", true);
+//						}
+//					}
+//				}); // end ajax
+//			}
+//		}); // end keyup
+//	});
 
 	//회원가입 완료 
 	$("#signYes").click(function() {
-		var signAccount = $('#signAccount').val();
+		var signAccount = $('#signEmail').val();
 		var signPwd = $('#signPwd').val();
 		var signPwd2 = $('#signPwd2').val();
 		if (signAccount.trim() == "" || signAccount.length < 2) {
-			$('#signAccount').focus();
-			$('#signAccount').val("");
+			$('#signEmail').focus();
+			$('#signEmail').val("");
 			return;
 		} else if (signPwd.trim() == "" || signPwd.length < 4) {
 			$('#signPwd').focus();
@@ -93,24 +102,7 @@ $(function() {
 			$('#signPwd2').val("");
 			return;
 		} else {
-			$.ajax({
-				url : 'userInsert.do',
-				type : 'post',
-				datatype : 'json',
-				data : {
-					"signAccount" : signAccount,
-					"signPwd" : signPwd
-				},
-				success : function(data) {
-					if (data == "ok") {
-						alert("회원가입 성공");
-						location.reload();
-					} else {
-						alert("회원가입 실패");
-					}
-
-				}
-			});
+			jQuery('#signFrm').submit();
 		}
 	});
 	

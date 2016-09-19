@@ -9,68 +9,16 @@
 		<put-attribute name="body" value="/WEB-INF/tiles/template/body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
 	</definition>
-	
-<!-- 	<definition name="*/*/*" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
-	</definition>  -->
-	
-	<!-- Home Page -->
-	<definition name="main" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
-	</definition>
-	
-	<!-- UserLogin Page -->
-	<definition name="admin" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
-	</definition>
-	
-	<definition name="dba" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/dba.jsp" />
-	</definition>
-	
-	<definition name="accessDenied" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/accessDenied.jsp" />
+
+	<definition name="*" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
 	</definition>
 
-	<!-- sign Page -->
-	<definition name="sign" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/user/sign.jsp" />
-	</definition>
-
-	<!-- portfolio Page -->
-	<definition name="portfolio" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/portfolio/portfolio.jsp" />
-	</definition>
-
-	<!-- board Page -->
-	<definition name="board" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/board/board.jsp" />
-	</definition>
-
-	<definition name="boardDetail" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/board/detail.jsp" />
-	</definition>
-
-	<definition name="boardInsert" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/board/insert.jsp" />
+	<definition name="*/*" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="boardModify" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/board/modify.jsp" />
-	</definition>
-	
-	<definition name="boardSearch" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/board/search.jsp" />
-	</definition>
-	
-	<definition name="boardSearch" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/board/search.jsp" />
-	</definition>
-
-	<!-- contact Page -->
-	<definition name="contact" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/contact/contact.jsp" />
+	<definition name="*/*/*" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
 </tiles-definitions>

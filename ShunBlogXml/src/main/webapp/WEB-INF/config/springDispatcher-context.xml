@@ -10,34 +10,22 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+		
+	<!-- 다국어 지원 설정 -->
+	<util:properties id="text_ko" location="/WEB-INF/resources_txt/text_ko.xml" />
+	<context:property-placeholder properties-ref="text_ko" />
+	<util:properties id="text_en" location="/WEB-INF/resources_txt/text_en.xml" />
+	<context:property-placeholder properties-ref="text_en" />
+	<util:properties id="text_ja" location="/WEB-INF/resources_txt/text_ja.xml" />
+	<context:property-placeholder properties-ref="text_ja" />
+		
+	<!-- @RequestMapping, @ModelAttribute, @SessionAttribute, @RequestParam 등 자동등록 -->
+	<mvc:annotation-driven/>
+	
 	<!-- Annotation(Bean) Scan해서 생성 -->
-	<context:component-scan base-package="com.shun.*" />
-
-	<!-- 1. DB연결 설정 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/myblog?useSSL=false&amp;autoReconnect=true" />
-		<property name="username" value="root" />
-		<property name="password" value="Blue1220@" />
-	</bean>
-
-	<!-- 2. TransactionManager 설정 (빈 설정) -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-	<!-- 4. sqlSessionFactoryBean 빈 등록 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:resources/mapper/*-Mapper.xml" />
-	</bean>
-
-	<!-- 5. sqlSessionTemplate 빈 등록 -->
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg ref="sqlSessionFactory" />
-	</bean>
-
+	<!-- @Controller, @Service, @Component, @Repository 등 자동등록 -->
+	<context:component-scan base-package="com.shun.*"/>
+	
 	<!-- Tiles -->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -48,4 +36,7 @@
 	</bean>
 
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="1" />
+	<!-- Dispatcher에 의한 자원을 읽지 못하는 현상 해결하기 -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
 </beans>

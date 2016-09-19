@@ -1,4 +1,4 @@
-package com.shun.blog.board;
+package com.shun.blog.model.board;
 
 import java.util.*;
 
