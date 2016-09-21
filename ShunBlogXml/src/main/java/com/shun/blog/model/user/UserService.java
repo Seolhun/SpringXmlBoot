@@ -6,16 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface UserService {
 	//회원가입하기 
-	void userInsert(Map map);
+	void userInsert(UserVO userVO);
 	
-	void userRoleInsert(Map map);
-	
-	//로그인하기 
-	String userLogin(String logAccount);
+	//user역할 - 페이지 권한 부여 
+	void userRoleInsert(UserRoleVO userRoleVO);
 	
 	//회원 가입시 중복확인 
-	int accountCheck(String signAccount);
+	int ownUserCheck(String signEmail);
 	
+	//로그인하기
+	UserVO userLogin(String signEmail);
+
 	//로그인시 회원 확인 
-	int userAccountCheck(String logAccount);
+	int userLoginCheck(Map map);
 }

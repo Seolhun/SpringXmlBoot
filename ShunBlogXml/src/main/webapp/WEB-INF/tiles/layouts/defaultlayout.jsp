@@ -4,11 +4,12 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/resources/css" var="css" />
-<spring:url value="/resources/images" var="images" />
+<spring:url value="/resources/img" var="img" />
 <spring:url value="/resources/js" var="js" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="Chrome">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="${img}/imedisyn.png">
 
 <!-- Google API Element -->
 <meta name="google-signin-client_id" content="264714905099-kta7i5n1lrmlrfbsmp7vi5g6or0e3n3d.apps.googleusercontent.com">

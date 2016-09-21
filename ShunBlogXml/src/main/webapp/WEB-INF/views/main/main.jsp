@@ -57,9 +57,8 @@
 		map = new naver.maps.Map('map', {
 			center: imedisyn.destinationPoint(0, 100),
 			zoom : 11, //지도의 초기 줌 레벨
-			minZoom : 2, //지도의 최소 줌 레벨
+			minZoom : 6, //지도의 최소 줌 레벨
 			zoomControl : true, //줌 컨트롤의 표시 여부
-			position : naver.maps.Position.TOP_RIGHT	
 		}),
 		/* 지도 옵션 */
 		marker = new naver.maps.Marker({
@@ -68,11 +67,11 @@
 		});
 	var contentString = [
 		    '<div class="iw_inner" style="width : 330px;">',
-		    '<h4>(주)아이메디신</h4>',
+		    '<h4 style="margin-left : 3px">(주)아이메디신</h4>',
 		    '<p style="font-size : 14px; margin : 10px 10px">서울특별시 강남구 봉은사로 443 | 삼성2동 44-14',
 		    '<br/>02-747-7422 | 웰니스 헬스케어 솔루션 기업',
 		    '<br/><a href="http://imedisyn.com/" target="_blank">http://imedisyn.com/</a>',
-		    '<img src="'+ HOME_PATH +'/img/imedisyn.png" width="55" height="55" style="margin-left : 5%"; alt="(주)아이메디신" class="thumb" /></p>',
+		    '<img src="'+ HOME_PATH +'/img/imedisyn.png" width="55" height="55" style="margin-left : 35%"; alt="(주)아이메디신" class="thumb" /></p>',
 		    '</div>'
 		].join('');
 	
@@ -84,9 +83,9 @@
 	    if (infowindow.getMap()) {
 	        infowindow.close();
 	    } else {
-	        infowindow.open(map, imedisyn.destinationPoint(0, 100));
+	        infowindow.open(map, imedisyn.destinationPoint(0, 80));
 	    }
 	});
-	infowindow.open(map, imedisyn.destinationPoint(0, 100));
+	infowindow.open(map, imedisyn.destinationPoint(0, 80));
 </script>
 </html>

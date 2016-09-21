@@ -3,14 +3,12 @@ package com.shun.blog.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,27 +17,21 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.AccessGrant;
-import org.springframework.social.oauth2.GrantType;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Parameters;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.api.client.auth.oauth2.BearerToken;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
+
 import com.shun.blog.commons.authentification.CommonFnDAOService;
 import com.shun.blog.commons.authentification.Constant;
+import com.shun.blog.model.user.UserRoleVO;
 import com.shun.blog.model.user.UserService;
+import com.shun.blog.model.user.UserVO;
+
 
 @Controller("userController")
 public class UserController {
@@ -91,11 +83,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/loginDo")
-	public String loginPage(ModelMap model) {
-		// 언어 설정 선택
-		model.addAttribute("language_code", language_code);
+	public String loginPage(String logEmail, String logPwd, ModelMap model) {
+		Map<Object, String> map=new HashMap<Object,String>();
+		map.put("logEmail", logEmail);
+		map.put("logPwd", logPwd);
+		userService.userLoginCheck(map);
 		String user_name = CommonFnDAOService.getPrincipal();
-
+		
 		if (!user_name.equals("anonymousUser")) {
 			String sub_title = "관리자 페이지";
 			model.addAttribute("sub_title", sub_title);
@@ -116,12 +110,12 @@ public class UserController {
 	
 	@RequestMapping(value = "/signDo")
 	public String userInsert(String signEmail, String signPwd) throws Exception{
-		Map map=new HashMap();
-		map.put("signEmail", signEmail);
-		map.put("signPwd", signPwd);
-		map.put("userRole", "ROLE_USER");
-		userService.userInsert(map);
-		userService.userRoleInsert(map);
+		UserVO userVO=new UserVO();
+		userVO.setAccount(signEmail);
+		userVO.setPwd(signPwd);
+		UserRoleVO userRoleVO=new UserRoleVO();
+		userService.userInsert(userVO);
+		userService.userRoleInsert(userRoleVO);
 		return "redirect:/main";
 	}
 	
@@ -159,7 +153,6 @@ public class UserController {
 				//로고 넣기
 				//ClassPathResource image=new ClassPathResource("/resources/img/google.png");
 				//messageHelper.addInline("Google_Logo", image);
-				
 				mailSender.send(message);
 				res.getWriter().write("emailOK");
 			} catch(Exception e){
@@ -170,8 +163,16 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/authentication")
-	public String auth(@RequestParam @Valid String auth){
-		return "main/main";
+	@RequestMapping(value ="/ownUserCheck")
+	public void ownUserCheck(String signEmail, ServletResponse res, Model model) throws IOException{
+		int userCheck=userService.ownUserCheck(signEmail);
+		if(userCheck>0){
+			UserVO logUser= userService.userLogin(signEmail);
+			System.out.println(logUser);
+			System.out.println("To String"+logUser.toString());
+			model.addAttribute("logUser", logUser.toString());
+		} else {
+			res.getWriter().write("needSign");
+		}
 	}
 }

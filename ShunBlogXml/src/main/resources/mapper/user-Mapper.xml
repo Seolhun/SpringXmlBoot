@@ -2,23 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
-	<insert id="userInsert" parameterType="hashMap">
+	<insert id="userInsert" parameterType="com.shun.blog.model.user.UserVO">
 		INSERT INTO userVO VALUES (#{signEmail} ,#{signPwd},now(), DEFAULT, DEFAULT ,DEFAULT ,DEFAULT ,DEFAULT);
 	</insert>
 	
-	<insert id="userRoleInsert" parameterType="hashMap">
-		INSERT INTO userRoleVO VALUES (Default, #{signEmail} , #{userRole});
+	<insert id="userRoleInsert" parameterType="com.shun.blog.model.user.UserRoleVO">
+		INSERT INTO userRoleVO VALUES (Default, #{account} , #{userRole});
 	</insert>
 	
-	<select id="accountCheck" parameterType="String" resultType="int">
+	<select id="ownUserCheck" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM userVO WHERE account=#{signAccount}
 	</select>
 	
-	<select id="userLogin" parameterType="String" resultType="String">
-		SELECT pwd from userVO where account=#{logAccount}
+	<select id="userLogin" parameterType="String" resultType="com.shun.blog.model.user.UserVO">
+		SELECT account,joindate,grade
+		FROM userVO where account=#{signEmail}
 	</select>
 	
-	<select id="userAccountCheck" parameterType="String" resultType="int">
+	<select id="userLoginCheck" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM userVO WHERE account=#{logAccount}
 	</select>
 </mapper>

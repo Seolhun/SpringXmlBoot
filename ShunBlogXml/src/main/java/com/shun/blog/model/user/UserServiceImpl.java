@@ -2,39 +2,47 @@ package com.shun.blog.model.user;
 
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service(value = "userServiceImple")
+import com.shun.blog.model.usersercurity.model.User;
+
+@Service(value = "userServiceImpl")
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	//회원 가입하기 
-	@Override
-	public void userInsert(Map map) {
-		userDAO.userInsert(map);
+	public void userInsert(UserVO userVO){
+		userVO.setPwd(passwordEncoder.encode(userVO.getPwd()));
+		userDAO.userInsert(userVO);
 	}
+	
 	//회원역할 넣기
 	@Override
-	public void userRoleInsert(Map map) {
-		userDAO.userRoleInsert(map);
+	public void userRoleInsert(UserRoleVO userRoleVO) {
+		userDAO.userRoleInsert(userRoleVO);
 	} 
-
+	
+	//회원인지 확인
 	@Override
-	public String userLogin(String logAccount) {
-		return userDAO.userLogin(logAccount);
+	public int ownUserCheck(String signEmail) {
+		return userDAO.ownUserCheck(signEmail);
+		
 	}
 
 	@Override
-	public int accountCheck(String signAccount) {
-		return userDAO.accountCheck(signAccount);
+	public UserVO userLogin(String signEmail) {
+		return userDAO.userLogin(signEmail);
 	}
-
+	
 	@Override
-	public int userAccountCheck(String logAccount) {
-		return userDAO.userAccountCheck(logAccount);
+	public int userLoginCheck(Map map) {
+		return userDAO.userLoginCheck(map);
 	}
-
 	
 }

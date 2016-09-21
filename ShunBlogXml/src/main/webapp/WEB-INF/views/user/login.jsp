@@ -22,8 +22,6 @@
 	</header>
 </head>
 <body>
-	<!-- 로그인 Modal  -->
-	<!-- Modal -->
 	<div id="loginModal">
 		<div class="modal-header">
 			<h4>
@@ -50,6 +48,7 @@
 					<a href="" class="google-plus"><span class="fontawesome-google-plus"></span></a>
 				</div>
 			</div>
+		</form>
 			<div class="modal-footer">
 				<div class="footerDiv">
 					<button type="submit" id="logYes" name="logYes" class="btn btn-success btn-default pull-left" value="Send">
@@ -63,7 +62,7 @@
 					<a href="#">Password</a><span class="glyphicon glyphicon-search"></span>
 				</div>
 			</div>
-		</form>
+		
 	</div>
 </body>
 </html>

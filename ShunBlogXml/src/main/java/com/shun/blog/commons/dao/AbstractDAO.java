@@ -5,7 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AbstractDAO {
+public abstract class AbstractDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;

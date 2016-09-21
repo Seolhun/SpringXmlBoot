@@ -6,16 +6,21 @@
 
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/main" access="permitAll" />
-  		<intercept-url pattern="/login" access="permitAll" />
-		<intercept-url pattern="/logout" access="permitAll" />		
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/logout" access="permitAll" />
 		<intercept-url pattern="/user/**" access="hasRole('User')" />
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
-		<form-login login-page="/login" default-target-url="/login" username-parameter="logAccount" password-parameter="logPwd" authentication-failure-url="/main" />
+		<form-login login-page="/login" default-target-url="/login"
+			username-parameter="logAccount" password-parameter="logPwd"
+			authentication-failure-url="/main" />
 
-		<remember-me remember-me-parameter="remember-me" remember-me-cookie="remember-me" token-validity-seconds="86400" data-source-ref="dataSource" />
+		<remember-me remember-me-parameter="remember-me"
+			remember-me-cookie="remember-me" token-validity-seconds="86400"
+			data-source-ref="dataSource" />
 		<access-denied-handler error-page="/Access_Denied" />
-		<logout logout-success-url="/login" delete-cookies="JSESSIONID"  />
+		<logout logout-success-url="/login" delete-cookies="JSESSIONID" />
 		<csrf />
+
 		<headers>
 			<frame-options policy="SAMEORIGIN" />
 		</headers>

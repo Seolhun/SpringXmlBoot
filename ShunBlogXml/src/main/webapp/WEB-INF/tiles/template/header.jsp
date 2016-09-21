@@ -31,6 +31,7 @@
 					<li><a href="detailUser">${pageContext.request.userPrincipal.name}</a></li>
 					<li><a href="<c:url value="/logout" />">Logout</a></li>
 				</c:if>
+				<li><a href="#" class="facebook" onclick="signOut();">Sign out</a></li>
 			</ul>
 			</div>
 			<!-- /.navbar-collapse -->

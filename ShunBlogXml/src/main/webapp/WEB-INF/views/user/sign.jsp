@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <title>Shun Blog</title>
 	<!-- Page Header -->
 	<!-- Set your background image for this header on the line below. -->
@@ -49,16 +48,14 @@
 					<input	type="password" class="form-control" id="signPwd2" name="signPwd2" placeholder="4자리 이상 입력하세요.">
 				</div>
 				<div class="right">
-					<a href="" class="g-signin2" id="my-signin2" data-width="250" data-height="50" data-longtitle="true"><span class="fontawesome-google-plus"></span></a>
-					<a href="#" class="facebook" onclick="signOut();">Sign out</a>
+					<a href="" class="g-signin2" id="my-signin2" data-width="250" data-height="50" data-longtitle="true">
+						<span class="fontawesome-google-plus"></span>
+					</a>
 				<!-- 
 					<a href="" class="facebook"> <span class="fontawesome-facebook"></span></a>
 					<a href="" class="twitter"> <span class="fontawesome-twitter"></span></a> 
 					
 				-->
-				<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-				<div id="naver_id_login"></div>
-				<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 				</div>
 			</div>
 		</form>

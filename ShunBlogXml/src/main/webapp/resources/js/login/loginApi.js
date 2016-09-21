@@ -21,49 +21,65 @@ function onFailure(error) {
 //성공시에 콘솔 로그에 Token 값을 불러온다.
 function onSuccess(googleUser) {
 	var profile = googleUser.getBasicProfile();
-	console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	console.log('Name: ' + profile.getName());
-	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail());
-	//성공 시 구글에서버에서 토큰값을 반환받는다.
+}
+
+function onLogin(googleUser) {
 	var google_id_token = googleUser.getAuthResponse().id_token;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='+google_id_token);
+	xhr.open('GET', 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token='
+			+ google_id_token);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.send('idtoken=' + google_id_token);
 	xhr.onload = function() {
-	  console.log('Signed in as: ' + xhr.responseText);
-//		var data=xhr.responseText;
-//		var jsonResponse = JSON.parse(data);
-//		var checkVerify=jsonResponse["email_verified"];
-//		var verifyEmail=jsonResponse["email"];
-//		if(jsonResponse["email_verified"]){
-//			$.ajax({
-//				type : 'POST',
-//				url : 'checkEmail',
-//				data : {
-//					'signEmail' : verifyEmail
-//				},
-//				success : function(data) {
-//					if (data == "emailOK") {
-//						$('#signYes').attr("disabled", false);
-//					} else {
-//						$('#signYes').attr("disabled", true);
-//					}
-//				}
-//			}); // end ajax
-//		} else {
-//			alert("Google Login Fail")
-//		}
+		console.log('Signed in responseText: ' + xhr.responseText);
+		var data = xhr.responseText;
+		var jsonResponse = JSON.parse(data);
+		var checkVerify = jsonResponse["email_verified"];
+		var verifyEmail = jsonResponse["email"];
+		if (checkVerify) { //우리 회사 디비와 비교하여 로그인을 시도한다.
+			$.ajax({
+				type : 'POST',
+				url : 'ownUserCheck',
+				//timeout : 20000,//20초 //milliseconds : 1000분의 1
+				data : {
+					'signEmail' : verifyEmail
+				},
+				success : function(data) {
+					if (data == "needSign") {
+						$('#signEmail').attr("value", verifyEmail);
+						$('#signEmail').attr("disabled", true);
+					} else { //
+						location.reload();
+					}
+				},
+				error : function(e) {
+					console.log("ERROR : ", e);
+					display(e);
+				}
+			}); // end ajax
+		} else {
+			alert("Google Login Fail")
+		}
 	}
+}
 
+function google_login() {
 
 }
 
-//로그아웃 기능 구현
+//구글 로그아웃 기능 구현
 function signOut() {
 	var auth2 = gapi.auth2.getAuthInstance();
 	auth2.signOut().then(function() {
 		console.log('User signed Out.');
 	});
+	location.reload();
 }
+
+function onLoad() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+	});
+}
+

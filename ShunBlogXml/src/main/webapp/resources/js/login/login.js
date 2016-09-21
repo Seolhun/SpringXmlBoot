@@ -1,5 +1,3 @@
-
-
 $(function() {	
 	$('#emailCheck').click(function() {
 		var signEmail = $('#signEmail').val();
@@ -33,29 +31,7 @@ $(function() {
 		} else if (logPwd.trim() == "" || logPwd.length < 4) {
 			$('#logPwd').focus();
 		} else {
-//			$.ajax({
-//				url : 'userLogin.do',
-//				type : 'post',
-//				datatype : 'json',
-//				data : {
-//					"logAccount" : logAccount,
-//					"logPwd" : logPwd
-//				},
-//				success : function(data) {
-//					if (data == "noid") {
-//						alert("아이디가 없습니다.")
-//						var logAccount = $('#logAccount').val("");
-//						$('#logAccount').focus();
-//					} else if (data == "nopwd") {
-//						alert("비밀번호가 틀립니다.");
-//						var logPwd = $('#logPwd').val("");
-//						$('#logPwd').focus();
-//					} else {
-//						alert("성공");
-//						location.reload();
-//					}
-//				}
-//			});
+			jQuery('#loginFrm').submit();
 		}
 	});
 

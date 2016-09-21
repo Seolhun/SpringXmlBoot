@@ -7,22 +7,23 @@ import java.util.*;
 @Repository
 public class UserDAO extends AbstractDAO {
 
-	public void userInsert(Map map) {
-		insert("user.userInsert", map);
+	public void userInsert(UserVO userVO) {
+		insert("user.userInsert", userVO);
 	}
 	
-	public void userRoleInsert(Map map) {
-		insert("user.userRoleInsert", map);
+	public void userRoleInsert(UserRoleVO userRoleVO) {
+		insert("user.userRoleInsert", userRoleVO);
 	}
 	
-	public String userLogin(String logAccount){
-		return (String)selectOne("user.userLogin", logAccount);
+	public int ownUserCheck(String signEmail){
+		return (int)selectOne("user.ownUserCheck", signEmail);
 	}
 	
-	public int accountCheck(String signAccount){
-		return (Integer)selectOne("user.accountCheck", signAccount);
+	public UserVO userLogin(String signEmail){
+		return (UserVO)selectOne("user.userLogin", signEmail);
 	}
 	
-	public int userAccountCheck(String logAccount){
-		return (Integer) selectOne("user.userAccountCheck", logAccount);
-	}}
+	public int userLoginCheck(Map map){
+		return (Integer) selectOne("user.userLoginCheck", map);
+	}
+}

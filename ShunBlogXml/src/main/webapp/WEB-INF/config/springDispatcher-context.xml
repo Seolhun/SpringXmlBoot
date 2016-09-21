@@ -11,14 +11,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 		
-	<!-- 다국어 지원 설정 -->
-	<util:properties id="text_ko" location="/WEB-INF/resources_txt/text_ko.xml" />
-	<context:property-placeholder properties-ref="text_ko" />
-	<util:properties id="text_en" location="/WEB-INF/resources_txt/text_en.xml" />
-	<context:property-placeholder properties-ref="text_en" />
-	<util:properties id="text_ja" location="/WEB-INF/resources_txt/text_ja.xml" />
-	<context:property-placeholder properties-ref="text_ja" />
-		
 	<!-- @RequestMapping, @ModelAttribute, @SessionAttribute, @RequestParam 등 자동등록 -->
 	<mvc:annotation-driven/>
 	

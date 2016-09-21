@@ -14,10 +14,10 @@ public class UserVO {
 	private String pwd;
 	private Date joindate;
 	private int grade;
+	private boolean isEnabled;
 	private boolean isAccountNonExpired;
 	private boolean isAccountNonLocked;
 	private boolean isCredentialsNonExpired;
-	private boolean isEnabled;
 	
 	public String getAccount() {
 		return account;
