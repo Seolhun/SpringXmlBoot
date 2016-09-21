@@ -1,5 +1,6 @@
-//로그인 모달
-$(function() {
+
+
+$(function() {	
 	$('#emailCheck').click(function() {
 		var signEmail = $('#signEmail').val();
 		var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
@@ -109,55 +110,55 @@ $(function() {
 	
 });
 
-//슬라이드 스크립
-var slideIndex = 1;
-showSlides(slideIndex);
-carousel(); //시간에 따른 이미지 넘기기 효과 
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-	var i;
-	var slides = document.getElementsByClassName("mySlides");
-	var dots = document.getElementsByClassName("dot");
-	if (n > slides.length) {
-		slideIndex = 1
-	}
-	if (n < 1) {
-		slideIndex = slides.length
-	}
-	for (i = 0; i < slides.length; i++) { //같이 존재 
-		slides[i].style.display = "none";
-	}
-	for (i = 0; i < dots.length; i++) {
-		dots[i].className = dots[i].className.replace(" active", "");
-	}
-	slides[slideIndex - 1].style.display = "block";
-	dots[slideIndex - 1].className += " active";
-}
-
-////슬라이드 스크립트 시간에 따른 자동효과 
-function carousel() {
-	var i;
-	var slides = document.getElementsByClassName("mySlides");
-	var dots = document.getElementsByClassName("dot");
-	for (i = 0; i < slides.length; i++) { //같이 존재 
-		slides[i].style.display = "none";
-	}
-	for (i = 0; i < dots.length; i++) {
-		dots[i].className = dots[i].className.replace(" active", "");
-	}
-	slideIndex++; //위에거와 차이점 
-	if (slideIndex > slides.length) {
-		slideIndex = 1
-	}
-	slides[slideIndex - 1].style.display = "block";
-	dots[slideIndex - 1].className += " active";
-	setTimeout(carousel, 7000); // Change image every 7 seconds
-}
+////슬라이드 스크립
+//var slideIndex = 1;
+//showSlides(slideIndex);
+//carousel(); //시간에 따른 이미지 넘기기 효과 
+//
+//function plusSlides(n) {
+//  showSlides(slideIndex += n);
+//}
+//
+//function currentSlide(n) {
+//  showSlides(slideIndex = n);
+//}
+//
+//function showSlides(n) {
+//	var i;
+//	var slides = document.getElementsByClassName("mySlides");
+//	var dots = document.getElementsByClassName("dot");
+//	if (n > slides.length) {
+//		slideIndex = 1
+//	}
+//	if (n < 1) {
+//		slideIndex = slides.length
+//	}
+//	for (i = 0; i < slides.length; i++) { //같이 존재 
+//		slides[i].style.display = "none";
+//	}
+//	for (i = 0; i < dots.length; i++) {
+//		dots[i].className = dots[i].className.replace(" active", "");
+//	}
+//	slides[slideIndex - 1].style.display = "block";
+//	dots[slideIndex - 1].className += " active";
+//}
+//
+//////슬라이드 스크립트 시간에 따른 자동효과 
+//function carousel() {
+//	var i;
+//	var slides = document.getElementsByClassName("mySlides");
+//	var dots = document.getElementsByClassName("dot");
+//	for (i = 0; i < slides.length; i++) { //같이 존재 
+//		slides[i].style.display = "none";
+//	}
+//	for (i = 0; i < dots.length; i++) {
+//		dots[i].className = dots[i].className.replace(" active", "");
+//	}
+//	slideIndex++; //위에거와 차이점 
+//	if (slideIndex > slides.length) {
+//		slideIndex = 1
+//	}
+//	slides[slideIndex - 1].style.display = "block";
+//	dots[slideIndex - 1].className += " active";
+//	setTimeout(carousel, 7000); // Change image every 7 seconds
+//}

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -25,6 +26,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<div id="naverMap">
+					<div id="map" style="width:100%;height:400px;"></div>
+				</div>
 				<div class="post-preview">
 					<a href="post.html">
 						<h2 class="post-title">Man must explore, and this is
@@ -36,35 +40,7 @@
 						Posted by <a href="#">Start Bootstrap</a> on September 24, 2014
 					</p>
 				</div>
-				<hr>
-				<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">I believe every human has a finite
-							number of heartbeats. I don't intend to waste any of mine.</h2>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Start Bootstrap</a> on September 18, 2014
-					</p>
-				</div>
-								<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">I believe every human has a finite
-							number of heartbeats. I don't intend to waste any of mine.</h2>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Start Bootstrap</a> on September 18, 2014
-					</p>
-				</div>
-								<div class="post-preview">
-					<a href="post.html">
-						<h2 class="post-title">I believe every human has a finite
-							number of heartbeats. I don't intend to waste any of mine.</h2>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Start Bootstrap</a> on September 18, 2014
-					</p>
-				</div>
-				<hr>
+				
 				<!-- Pager -->
 				<ul class="pager">
 					<li class="next"><a href="#">Older Posts &rarr;</a></li>
@@ -74,4 +50,43 @@
 	</div>
 	<hr>
 </body>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=PuLsUjuvj6Kfg0EQe7Jh"></script>
+<script>
+	var HOME_PATH = window.HOME_PATH || 'resources';
+	var imedisyn = new naver.maps.LatLng(37.511795, 127.048245),
+		map = new naver.maps.Map('map', {
+			center: imedisyn.destinationPoint(0, 100),
+			zoom : 11, //지도의 초기 줌 레벨
+			minZoom : 2, //지도의 최소 줌 레벨
+			zoomControl : true, //줌 컨트롤의 표시 여부
+			position : naver.maps.Position.TOP_RIGHT	
+		}),
+		/* 지도 옵션 */
+		marker = new naver.maps.Marker({
+			map : map,
+			position : imedisyn
+		});
+	var contentString = [
+		    '<div class="iw_inner" style="width : 330px;">',
+		    '<h4>(주)아이메디신</h4>',
+		    '<p style="font-size : 14px; margin : 10px 10px">서울특별시 강남구 봉은사로 443 | 삼성2동 44-14',
+		    '<br/>02-747-7422 | 웰니스 헬스케어 솔루션 기업',
+		    '<br/><a href="http://imedisyn.com/" target="_blank">http://imedisyn.com/</a>',
+		    '<img src="'+ HOME_PATH +'/img/imedisyn.png" width="55" height="55" style="margin-left : 5%"; alt="(주)아이메디신" class="thumb" /></p>',
+		    '</div>'
+		].join('');
+	
+	var infowindow = new naver.maps.InfoWindow({
+	    content: contentString
+	});
+	
+	naver.maps.Event.addListener(marker, "click", function(e) {
+	    if (infowindow.getMap()) {
+	        infowindow.close();
+	    } else {
+	        infowindow.open(map, imedisyn.destinationPoint(0, 100));
+	    }
+	});
+	infowindow.open(map, imedisyn.destinationPoint(0, 100));
+</script>
 </html>

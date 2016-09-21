@@ -45,9 +45,7 @@
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="right">
-					<a href="" class="facebook" >
-						<span class="fontawesome-facebook"></span>
-					</a> 
+					<a href="" class="facebook" ><span class="fontawesome-facebook"></span></a> 
 					<a href="" class="twitter"><span class="fontawesome-twitter"></span></a> 
 					<a href="" class="google-plus"><span class="fontawesome-google-plus"></span></a>
 				</div>

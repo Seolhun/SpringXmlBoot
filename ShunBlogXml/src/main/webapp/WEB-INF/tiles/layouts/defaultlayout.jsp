@@ -9,7 +9,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="Chrome">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shun Blog</title>
+
+<!-- Google API Element -->
+<meta name="google-signin-client_id" content="264714905099-kta7i5n1lrmlrfbsmp7vi5g6or0e3n3d.apps.googleusercontent.com">
+<title>iSyncBrain</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -50,45 +53,12 @@
 	<script src="${js}/contact/contact.js"></script>
 	<script src="${js}/board/board.js"></script>
 	<script src="${js}/login/login.js"></script>
+	<script src="${js}/login/loginApi.js"></script>
 	
 	<!-- Theme JavaScript -->
 	<script src="${js}/main/clean-blog.min.js"></script>
-	<script src="${js}/main/jqBootstrapValidation.js'"></script>
+	<script src="${js}/main/jqBootstrapValidation.js"></script>
 	
-	<!-- 네이버 글쓰기 자바스크립 -->
-	<script src="<c:url value='/WEB-INF/views/SE2/js/HuskyEZCreator.js'/>"></script>
-	<script type="text/javascript" src="/WEB-INF/views/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
-	<script type="text/javascript">
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef: oEditors,
-		elPlaceHolder: "smartEditor",
-		//SmartEditor2Skin.html 파일이 존재하는 경로
-		sSkinURI: "/SE2/SmartEditor2Skin.html",	
-		htParams : {
-			// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseToolbar : true,				
-			// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseVerticalResizer : true,		
-			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseModeChanger : true,			
-			fOnBeforeUnload : function(){
-			}
-		},
-		fOnAppLoad : function(){
-			//기존 저장된 내용의 text 내용을 에디터상에 뿌려주고자 할때 사용
-			oEditors.getById["smartEditor"].exec("PASTE_HTML", [""]);
-		},
-		fCreator: "createSEditor2";
-	});
-	
-	//네이버 에디터 작성 데이터 전송하기 
-	$("#submitBoardBtn").click(function(){
-		oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
-	})
-	
-	$("#submitModifyBoardBtn").click(function(){
-		oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
-	})
-</script>
+	<!-- 구글 로그인 JS -->
+	<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
 </html>

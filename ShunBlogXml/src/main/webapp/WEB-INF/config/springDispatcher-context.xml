@@ -38,5 +38,4 @@
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="1" />
 	<!-- Dispatcher에 의한 자원을 읽지 못하는 현상 해결하기 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	
 </beans>

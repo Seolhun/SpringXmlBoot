@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<c:url value='/resources/css/contact/contact.css'/>" rel="stylesheet"></link>
 	<title>Contact Me</title>
 </head>
 <body>
@@ -36,6 +35,4 @@
 		</div>
 	</div>
 </body>
-	<!-- Custom JavaScript -->
-	<script src="<c:url value='/resources/js/contact/contact.js'/>"></script>
 </html>

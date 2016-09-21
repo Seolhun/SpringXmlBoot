@@ -19,12 +19,24 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.api.client.auth.oauth2.BearerToken;
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.http.HttpRequestFactory;
+import com.google.api.client.http.HttpResponse;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
 import com.shun.blog.commons.authentification.CommonFnDAOService;
 import com.shun.blog.commons.authentification.Constant;
 import com.shun.blog.model.user.UserService;
@@ -41,13 +53,6 @@ public class UserController {
 	@Autowired
 	CommonFnDAOService CommonFnDAOService;
 	
-	@Autowired
-	private Properties text_ko;
-	@Autowired
-	private Properties text_en;
-	@Autowired
-	private Properties text_ja;
-	
 	String language_code = Constant.LANGUAGE_CODE;
 
 	private String getPrincipal() {
@@ -63,8 +68,14 @@ public class UserController {
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
+		//model.addAttribute("user", getPrincipal());
 		return "admin";
+	}
+	
+	@RequestMapping(value = "/admin2", method = RequestMethod.GET)
+	public String adminPage2(ModelMap model) {
+		//model.addAttribute("user", getPrincipal());
+		return "admin2";
 	}
 
 	@RequestMapping(value = "/dba", method = RequestMethod.GET)
@@ -82,12 +93,8 @@ public class UserController {
 	@RequestMapping(value = "/loginDo")
 	public String loginPage(ModelMap model) {
 		// 언어 설정 선택
-		Properties text = CommonFnDAOService.getTextProperties(language_code, text_ko, text_en, text_ja);
 		model.addAttribute("language_code", language_code);
 		String user_name = CommonFnDAOService.getPrincipal();
-		
-		String title = text.getProperty("common.hp.title");
-		model.addAttribute("title", title);
 
 		if (!user_name.equals("anonymousUser")) {
 			String sub_title = "관리자 페이지";
@@ -117,7 +124,6 @@ public class UserController {
 		userService.userRoleInsert(map);
 		return "redirect:/main";
 	}
-
 	
 	@RequestMapping(value = "/checkEmail")
 	public void sendMail(String signEmail, ServletResponse res, HttpSession session) throws IOException {
@@ -139,7 +145,7 @@ public class UserController {
 				
 				messageHelper.setText(""
 						+ "<html><body><img src='cid:Google_Logo'>"
-						+ "<div style='text-align : center; font-color:black;'>"
+						+ "<div style='text-align : center; font-color:black; font-size : 14px;'>"
 						+ "<p>안녕하세요.</p>"
 						+ "<p>iSyncBrain 회원가입 인증메일입니다.</p>"
 						+ "<p>확인 버튼을 통해서 이메일 인증 후 가입해주시기 바랍니다.</p>"

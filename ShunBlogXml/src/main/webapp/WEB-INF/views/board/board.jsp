@@ -98,7 +98,7 @@
 		<c:if test="${currentBlock ne blockNum }">
 			<a href="board?curPage=${currentBlock<blockNum?currentBlock+5:currentBlock }&block=${currentBlock<blockNum?currentBlock+1:currentBlock }">다 음</a>
 		</c:if>	
-		<br>  ${startPage } page / ${totalPage } pages
+		<br> ${startPage } page / ${totalPage } pages
 	</div>
 </body>
 	<!-- Custom JavaScript -->

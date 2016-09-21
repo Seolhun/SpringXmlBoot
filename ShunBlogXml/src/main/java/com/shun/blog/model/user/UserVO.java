@@ -2,8 +2,15 @@ package com.shun.blog.model.user;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+
 public class UserVO {
+	@Pattern(regexp="(^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$)" ,message="올바른 이메일 형식이 아닙니다.")
 	private String account;
+	
+	@Pattern(regexp="([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9]){8,12}" ,message="숫자와 영문자, 특수문자를 포함한 8 ~ 12자를 입력하세요.")
 	private String pwd;
 	private Date joindate;
 	private int grade;

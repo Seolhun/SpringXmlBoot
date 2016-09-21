@@ -58,6 +58,15 @@ public class BoardController {
 		model.addAttribute("currentBlock", currentBlock);
 		model.addAttribute("moveBlock", moveBlock);
 		model.addAttribute("blockNum", blockNum);
+		
+		int total=1000;
+		int current=3;
+		int limit=10;
+		int paging=100;
+		model.addAttribute("total", total);
+		model.addAttribute("current", current);
+		model.addAttribute("limit", limit);
+		model.addAttribute("paging", paging);
 		return "board/board"; //콜백
 	}
 	
