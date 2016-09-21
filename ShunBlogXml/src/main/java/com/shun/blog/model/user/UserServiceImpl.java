@@ -5,20 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.shun.blog.model.usersercurity.model.User;
-
 @Service(value = "userServiceImpl")
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
 	
 	//회원 가입하기 
 	public void userInsert(UserVO userVO){
-		userVO.setPwd(passwordEncoder.encode(userVO.getPwd()));
 		userDAO.userInsert(userVO);
 	}
 	

@@ -42,9 +42,6 @@ public class UserController {
     @Autowired
 	private JavaMailSender mailSender;
 
-	@Autowired
-	CommonFnDAOService CommonFnDAOService;
-	
 	String language_code = Constant.LANGUAGE_CODE;
 
 	private String getPrincipal() {
@@ -88,15 +85,7 @@ public class UserController {
 		map.put("logEmail", logEmail);
 		map.put("logPwd", logPwd);
 		userService.userLoginCheck(map);
-		String user_name = CommonFnDAOService.getPrincipal();
-		
-		if (!user_name.equals("anonymousUser")) {
-			String sub_title = "관리자 페이지";
-			model.addAttribute("sub_title", sub_title);
-			return "admin";
-		} else {
-			return "main/main";
-		}
+		return "main";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
